@@ -40,6 +40,7 @@ Download installer → Add to PATH.
 Install all dependencies via `requirements.txt` (includes FastAPI, PDF tools, OpenAI, ReportLab).
 
 ```bash
+pip install -r requirements.txt
 pip install fastapi uvicorn python-multipart PyPDF2 pdfplumber Pillow pytesseract python-dotenv openai reportlab
 ```
 
