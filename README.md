@@ -21,6 +21,13 @@ FastAPI backend for extracting insights from medical PDFs (blood reports, prescr
    git clone https://github.com/YOUR-USERNAME/medical-doc-intel-backend.git
    cd medical-doc-intel-backend
 
+## Required Packages
+Install all dependencies via `requirements.txt` (includes FastAPI, PDF tools, OpenAI, ReportLab).
+
+```bash
+pip install fastapi uvicorn python-multipart PyPDF2 pdfplumber Pillow pytesseract python-dotenv openai reportlab
+```
+
 ## Visual reference 
 ![Figure 1](https://github.com/Hackerette0/medical-doc-intel-backend/blob/main/images/backendone.png) 
 *Screenshot Reference: Backend testing input*
