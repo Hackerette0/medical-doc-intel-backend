@@ -7,7 +7,11 @@ FastAPI backend for extracting insights from medical PDFs (blood reports, prescr
 - **Part 2**: Multi-PDF upload → Per-file analysis → Aggregate tags/counts → Download PDF summary report (ReportLab).
 - **General Support**: Works on any blood report (Dr. Lal, Sterling, Thyrocare) – scans for B12, HbA1c, Cholesterol, etc., flags abnormals vs ref.
 
-![Backend UI](images/backendone.png) <!-- Screenshot of upload screen with dashed border -->
+![Figure 1](https://github.com/Hackerette0/medical-doc-intel-backend/blob/main/images/backendone.png) 
+*Screenshot Reference: Backend testing input*
+
+![Figure 2](https://github.com/Hackerette0/medical-doc-intel-backend/blob/main/images/backendtwo.png) 
+*Screenshot Reference: Backend testing output*
 
 ## Tech Stack
 - FastAPI (API framework)
