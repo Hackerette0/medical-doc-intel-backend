@@ -7,12 +7,6 @@ FastAPI backend for extracting insights from medical PDFs (blood reports, prescr
 - **Part 2**: Multi-PDF upload → Per-file analysis → Aggregate tags/counts → Download PDF summary report (ReportLab).
 - **General Support**: Works on any blood report (Dr. Lal, Sterling, Thyrocare) – scans for B12, HbA1c, Cholesterol, etc., flags abnormals vs ref.
 
-![Figure 1](https://github.com/Hackerette0/medical-doc-intel-backend/blob/main/images/backendone.png) 
-*Screenshot Reference: Backend testing input*
-
-![Figure 2](https://github.com/Hackerette0/medical-doc-intel-backend/blob/main/images/backendtwo.png) 
-*Screenshot Reference: Backend testing output*
-
 ## Tech Stack
 - FastAPI (API framework)
 - pdfplumber + PyPDF2 (PDF extraction/tables)
@@ -26,3 +20,10 @@ FastAPI backend for extracting insights from medical PDFs (blood reports, prescr
    ```bash
    git clone https://github.com/YOUR-USERNAME/medical-doc-intel-backend.git
    cd medical-doc-intel-backend
+
+## Visual reference 
+![Figure 1](https://github.com/Hackerette0/medical-doc-intel-backend/blob/main/images/backendone.png) 
+*Screenshot Reference: Backend testing input*
+
+![Figure 2](https://github.com/Hackerette0/medical-doc-intel-backend/blob/main/images/backendtwo.png) 
+*Screenshot Reference: Backend testing output*
