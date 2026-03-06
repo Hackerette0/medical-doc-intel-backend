@@ -15,11 +15,26 @@ FastAPI backend for extracting insights from medical PDFs (blood reports, prescr
 - ReportLab (PDF generation for Part 2)
 - Python 3.12+
 
-## Setup
-1. **Clone Repo**:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/medical-doc-intel-backend.git
-   cd medical-doc-intel-backend
+
+##Setup
+
+Clone Repo:
+```bash
+git clone https://github.com/Hackerette0/medical-doc-intel-backend.git
+cd medical-doc-intel-backend
+```
+2. Virtual Env:
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+3. Install Deps (see above).
+Optional: OpenAI Key:
+```bash
+.env: OPENAI_API_KEY=sk-your-full-key-here.
+```
+Tesseract OCR (optional):
+Download installer → Add to PATH.
 
 ## Required Packages
 Install all dependencies via `requirements.txt` (includes FastAPI, PDF tools, OpenAI, ReportLab).
