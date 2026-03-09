@@ -19,7 +19,7 @@ def aggregate_results(analyses: List[Dict]) -> Dict:
     if not analyses:
         return {"summary_points": [], "aggregated_tags": {}, "total_files": 0}
     
-    # Aggregate tags (unique + counts)
+
     aggregated_tags = {}
     for analysis in analyses:
         for category, tags in analysis["tags"].items():
@@ -28,10 +28,10 @@ def aggregate_results(analyses: List[Dict]) -> Dict:
             for tag in tags:
                 aggregated_tags[category][tag] = aggregated_tags[category].get(tag, 0) + 1
     
-    # Flatten for LLM (e.g., "deficiencies: B12 Deficiency:1")
+
     tags_str = json.dumps({cat: {t: cnt for t, cnt in tags.items()} for cat, tags in aggregated_tags.items()})
     
-    # LLM for 5 summary points
+
     prompt = f"""
     Aggregate health insights from {len(analyses)} medical documents (blood reports, etc.).
     Aggregated Tags: {tags_str}
@@ -56,7 +56,7 @@ def aggregate_results(analyses: List[Dict]) -> Dict:
         content = response.choices[0].message.content.strip("```json").strip("```")
         summary = json.loads(content)["summary_points"]
     except:
-        # Fallback for your report (expand as needed)
+
         summary = [
             "Overall normal liver/kidney/lipids/thyroid/CBC across files.",
             "Recurring vitamin B12 deficiency (200 pg/mL <211) – risk for anemia/neurological issues.",
@@ -67,8 +67,7 @@ def aggregate_results(analyses: List[Dict]) -> Dict:
     
     return {
         "summary_points": summary,
-        "aggregated_tags": aggregated_tags,  # e.g., {"deficiencies": {"Vitamin B12 Deficiency": 1}}
-        "total_files": len(analyses),
+        "aggregated_tags": aggregated_tags, 
         "document_types": list(set(a["document_type"] for a in analyses))
     }
 
@@ -81,23 +80,23 @@ def generate_summary_pdf(agg_data: Dict, filename: str = "health_summary.pdf") -
     styles = getSampleStyleSheet()
     story = []
     
-    # Title
+
     title_style = ParagraphStyle('CustomTitle', parent=styles['Heading1'], fontSize=18, spaceAfter=30, alignment=1)
     story.append(Paragraph("Aggregated Health Summary Report", title_style))
     story.append(Spacer(1, 12))
     
-    # Meta
+
     meta = f"Processed {agg_data['total_files']} files | Types: {', '.join(agg_data['document_types'])}"
     story.append(Paragraph(meta, styles['Normal']))
     story.append(Spacer(1, 12))
     
-    # Summary Points
+
     story.append(Paragraph("Key Summary Insights", styles['Heading2']))
     for point in agg_data['summary_points']:
         story.append(Paragraph(f"• {point}", styles['Normal']))
         story.append(Spacer(1, 6))
     
-    # Aggregated Tags Table
+
     story.append(Paragraph("Aggregated Tags (with Counts)", styles['Heading2']))
     data = [["Category", "Tag", "Count"]]
     for cat, tags in agg_data['aggregated_tags'].items():
