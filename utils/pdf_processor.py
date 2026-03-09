@@ -21,13 +21,13 @@ def extract_text_from_pdf(pdf_bytes: bytes) -> str:
     text = ""
     
     try:
-        # 1. pdfplumber (best for tables)
+
         with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
             for page in pdf.pages:
                 page_text = page.extract_text(layout=True) or ""
                 text += page_text + "\n"
                 
-                # General table extraction (works on any blood report)
+ 
                 tables = page.extract_tables()
                 for table in tables or []:
                     if table and len(table) > 1:
@@ -37,7 +37,7 @@ def extract_text_from_pdf(pdf_bytes: bytes) -> str:
                             text += row_str + "\n"
                         text += "--- END TABLE ---\n"
         
-        # 2. PyPDF2 fallback (for text-heavy pages)
+
         if len(text) < 300:
             pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
             for page in pdf_reader.pages:
@@ -50,7 +50,7 @@ def extract_text_from_pdf(pdf_bytes: bytes) -> str:
         logger.error(f"Extraction error: {e}")
         text = ""
     
-    # OCR only if very low AND available
+
     if len(text) < 400 and TESSERACT_AVAILABLE:
         text += ocr_pdf(pdf_bytes)
     
